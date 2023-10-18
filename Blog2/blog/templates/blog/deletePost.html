@@ -1,0 +1,19 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block title %}
+    Post Details
+{% endblock %}
+
+{% block content %}
+
+<div style="width: 200px; margin: 0 auto;">
+    <h2 class="text-center">
+        {{data.title|title}}
+    </h2>
+    <form action="{% url 'deletePost' slug=data.slug %}" method="POST">
+        {% csrf_token %}
+        <a href="{{ data.get_absolute_url}}">Cancel</a>
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form> 
+</div>
+{% endblock %}

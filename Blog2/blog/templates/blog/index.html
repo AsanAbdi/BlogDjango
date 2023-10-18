@@ -1,0 +1,26 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block title %}
+    Home blog
+{% endblock %}
+
+{% block content %}
+    <div style="width: 500px; margin: 0 auto; margin-bottom: 40px">
+        <h1>Posts:</h1>
+    </div>
+        {% for post in data %}
+            <div class="card text-center" style="width: 500px; margin: 0 auto; margin-bottom: 40px">
+                <div class="card-header">
+                Card
+                </div>
+                <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p class="card-text">{{ post.body|truncatewords:25 }}</p>
+                <a href="{{ post.get_absolute_url }}" class="btn btn-primary">See post</a>
+                </div>
+                <div class="card-footer text-body-secondary">
+                {{ post.date_pub }}
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block content %}
+    <h1 class="text-center">All tags</h1>
+    <div style="margin: 0 auto; width: 400px; color: #3366BB;  text-decoration: none;">
+        {% for tag in data %}
+            <h1><a href="{{ tag.get_absolute_url }}" style="text-decoration: none;">#{{tag.title|title}}</a></h1>
+        {% endfor %}
+    </div>
+
+    <div>
+        
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block content %}
+    <div style="width:700px; margin: 0 auto;">
+        <form action="{% url 'createPost' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {% for field in data %}
+                    {{field.label}}
+                    {{field}}<br>
+                {% endfor %}
+                {% if data.errors %}
+                    <div class="alert alert-danger">
+                        ?
+                        {{data.errors}}
+                    </div>
+                {% endif %}
+            </div>
+            <button class="btn btn-primary">Send</button>
+        </form>
+    </div>
+{% endblock %}

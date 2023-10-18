@@ -1,0 +1,48 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block title %}
+    Post Details
+{% endblock %}
+
+{% block content %}
+
+<div style="width: 1000px; margin: 0 auto;">
+    <p class="text-end">
+        {{data.date_pub}}
+    </p>
+
+    <div style="margin:0 auto; width: 15px;">
+        <a href="{{ data.get_updated_url }}"><img style="width: 25px; position: absolute; top:100px; left: 1000px;" src="https://cdn-icons-png.flaticon.com/512/60/60785.png" alt="Edit"></a>
+        
+        <a href="{{ data.get_deleted_url }}"><img style="width: 25px; position: absolute; top:140px; left: 1000px;" src="https://cdn-icons-png.flaticon.com/512/1214/1214594.png" alt="Delete"></a>
+    </div>
+    
+    {% if data.tags.all %}
+        <h3>Tags of this post:</h3>
+
+        {% for tag in data.tags.all %}
+            <span class="text-start" style="color:blue;">
+                <a href="{{ tag.get_absolute_url }}" style="text-decoration: none;">
+                    #{{tag}}
+                </a>
+            </span>
+        {% endfor %}
+    {% else %}
+        <p>This post with no tags</p>
+    {% endif %}
+
+</div>
+
+<div style="margin:25px 0;">
+    <h1 class="text-center">
+        {{data.title}}
+    </h1>
+</div>
+
+<div style="width: 1000px; margin: 0 auto;">
+    <p class="text-center">
+        {{data.body}}
+    </p>
+</div>
+
+{% endblock %}

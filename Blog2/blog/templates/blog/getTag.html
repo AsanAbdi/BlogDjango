@@ -1,0 +1,33 @@
+{% extends 'blog/blog_base.html' %}
+
+{% block content %}
+    <div style="width: 500px; margin: 0 auto;">
+        <h1 class="text-center" style="margin-bottom: 50px">{{data|title}}</h1>
+
+        <div style="margin:0 auto; width: 15px;">
+            <a href="{{ data.get_updated_url }}"><img style="width: 25px; position: absolute; top:100px; left: 1000px;" src="https://cdn-icons-png.flaticon.com/512/60/60785.png" alt="Edit"></a>
+            
+            <a href="{{ data.get_deleted_url }}"><img style="width: 25px; position: absolute; top:140px; left: 1000px;" src="https://cdn-icons-png.flaticon.com/512/1214/1214594.png" alt="Delete"></a>
+        </div>
+
+        {% if data.posts.all %}
+            {% for post in data.posts.all %}
+                <div class="card text-center" style="width: 500px; margin: 0 auto; margin-bottom: 40px">
+                    <div class="card-header">
+                    Card
+                    </div>
+                    <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.body|truncatewords:25 }}</p>
+                    <a href="{{ post.get_absolute_url }}" class="btn btn-primary">See post</a>
+                    </div>
+                    <div class="card-footer text-body-secondary">
+                    {{ post.date_pub }}
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+        <h2 style="color:#555">There is no posts with this tag  :(</h2>
+        {% endif %}
+    </div>
+{% endblock %}
